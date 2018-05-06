@@ -33,8 +33,11 @@ var topics = [
     "Roy Orbison",
     ];
 
+// create input form where user will type their topic and create a button for it
+$("#content").append('<br><br><form><input type="text" placeholder="Band/Musician..." name="input"><button type="submit" id="userInput"><i class="fa fa-search"></i>Create Button</button></form>');
+
 // create div for buttons and append buttons for array 'topics'
-$("body").append("<div id='buttons'></div>");
+$("#content").append("<div id='buttons'></div>");
 
 for (var i = 0; i < topics.length; i++) {
     var button = $("<button>");
@@ -44,17 +47,13 @@ for (var i = 0; i < topics.length; i++) {
     $("#buttons").append(button);
 }  
 
-
-// create input form where user will type their topic and create a button for it
-$("body").append('<br><br><form><input type="text" placeholder="Band/Musician..." name="input"><button type="submit" id="userInput"><i class="fa fa-search"></i>Create Button</button></form>');
-
 // create div where gifs will show up
-$("body").append("<div id='gifs-go-here'></div>")
+$("#content").append("<div id='gifs-go-here'></div>")
 
 
 
 // button functionality for gif buttons
-$("body").on("click", ".gifButton", function() {
+$("#content").on("click", ".gifButton", function() {
 
     // clear #gifs-go-here div
     $("#gifs-go-here").empty();
@@ -73,14 +72,14 @@ $("body").on("click", ".gifButton", function() {
         // loop over each returned result, access the relevant info, add it to page
         for (var j = 0; j < results.length; j++) {
             // make a div for each gif
-            var gifDiv = $("<div class='gif'>");
+            var gifDiv = $("<div class='gif col-sm-12'>");
             // give gifDiv attributes for pause/play functionality
             gifDiv.attr("state", "still");
             gifDiv.attr("paused", results[j].images.fixed_height_still.url);
             gifDiv.attr("playing", results[j].images.fixed_height.url);
             // add a data attribute, rating, fixed_height_still image, and fixed_height_ to the div
-            gifDiv.append("Rating: " + results[j].rating.toUpperCase());
-            gifDiv.append("<img src='" + results[j].images.fixed_height_still.url + "'>");
+            gifDiv.append("Rating: " + results[j].rating.toUpperCase() + "<br>");
+            gifDiv.append("<img src='" + results[j].images.fixed_height_still.url + "'><br><br>");
             // append div to page
             $("#gifs-go-here").append(gifDiv);
         }
@@ -89,7 +88,7 @@ $("body").on("click", ".gifButton", function() {
 
 
 // generate button from user input when user hits "create button" button
-$("body").on("click", "#userInput", function() {
+$("#content").on("click", "#userInput", function() {
     // make sure input field is not blank, do something if it isn't blank, do nothing if it is
     if ($("input").val() !== "") {
         $("form").submit(function() {
@@ -106,7 +105,7 @@ $("body").on("click", "#userInput", function() {
 })
 
 // pause/play functionality
-$("body").on("click", "div .gif", function() {
+$("#content").on("click", "div .gif", function() {
     // if clicked div has state="still", it is a paused gif so change state and change the src of the img to unpaused version
     if ($(this).attr("state") == "still") {
         $(this).attr("state", "animated");
