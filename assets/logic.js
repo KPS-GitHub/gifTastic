@@ -55,6 +55,9 @@ $("body").append("<div id='gifs-go-here'></div>")
 
 // button functionality for gif buttons
 $("body").on("click", ".gifButton", function() {
+
+    // clear #gifs-go-here div
+    $("#gifs-go-here").empty();
    
     var apiKey = "uH1A88RmqaHoHOXWGhBvp8HZ6k4529nS";
     var topic = $(this).attr("data-name");
@@ -79,7 +82,7 @@ $("body").on("click", ".gifButton", function() {
             gifDiv.append("Rating: " + results[j].rating.toUpperCase());
             gifDiv.append("<img src='" + results[j].images.fixed_height_still.url + "'>");
             // append div to page
-            $("#gifs-go-here").prepend(gifDiv);
+            $("#gifs-go-here").append(gifDiv);
         }
     })
 })
