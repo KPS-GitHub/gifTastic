@@ -68,7 +68,11 @@ $("body").on("click", ".gifButton", function() {
         // loop over each returned result, access the relevant info, add it to page
         for (var j = 0; j < results.length; j++) {
             // make a div for each gif
-            var gifDiv = $("<div>");
+            var gifDiv = $("<div class='gif'>");
+            // give gifDiv attributes for pause/play functionality
+            gifDiv.attr("state", "still");
+            gifDiv.attr("paused", results[j].images.fixed_height_still.url);
+            gifDiv.attr("playing", results[j].images.fixed_height.url);
             // add a data attribute, rating, fixed_height_still image, and fixed_height_ to the div
             gifDiv.append("Rating: " + results[j].rating.toUpperCase());
             gifDiv.append("<img src='" + results[j].images.fixed_height_still.url + "'>");
@@ -96,16 +100,17 @@ $("body").on("click", "#userInput", function() {
     }
 })
 
-// // ajax call
-// var apiKey = "uH1A88RmqaHoHOXWGhBvp8HZ6k4529nS";
-// var topic;
-// var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=" + apiKey + "&limit=10";
-
-// $.ajax({
-//     url: queryURL,
-//     method: "GET"
-// }).then(function(response) {
-
-// })
+// pause/play functionality
+$("body").on("click", "div .gif", function() {
+    // if clicked div has state="still", it is a paused gif so change state and change the src of the img to unpaused version
+    if ($(this).attr("state") == "still") {
+        $(this).attr("state", "animated");
+        $(this).children("img").attr("src", $(this).attr("playing"));
+    // if clicked div has state="animated", it is an animated gif so change state and change the src of the img to paused version
+    } else {
+        $(this).attr("state", "still");
+        $(this).children("img").attr("src", $(this).attr("paused"));
+    }
+})
 
 }) // end of docready
