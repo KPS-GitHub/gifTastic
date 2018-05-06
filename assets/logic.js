@@ -1,4 +1,4 @@
-$(document).ready(function() {
+
 
 var topics = [
     "Modest Mouse", 
@@ -50,6 +50,8 @@ $("body").append('<br><br><form><input type="text" placeholder="Band/Musician...
 
 // create div where gifs will show up
 $("body").append("<div id='gifs-go-here'></div>")
+
+$(document).ready(function() {
 
 // button functionality for gif buttons
 $("body").on("click", ".gifButton", function() {
