@@ -91,6 +91,7 @@ $("#content").on("click", ".gifButton", function() {
 $("#content").on("click", "#userInput", function() {
     // make sure input field is not blank, do something if it isn't blank, do nothing if it is
     if ($("input").val() !== "") {
+        // take user input and create a related button
         $("form").submit(function() {
             var input = $("input").val().trim();
             var newButton = $("<button>");
@@ -98,7 +99,7 @@ $("#content").on("click", "#userInput", function() {
             newButton.addClass("gifButton btn btn-dark");
             newButton.text(input);
             $("#buttons").append(newButton);
-
+            
             event.preventDefault();
         })
     }
@@ -106,11 +107,11 @@ $("#content").on("click", "#userInput", function() {
 
 // pause/play functionality
 $("#content").on("click", "div .gif", function() {
-    // if clicked div has state="still", it is a paused gif so change state and change the src of the img to unpaused version
+    // if clicked div has state="still", it is a paused gif so change state to "animated" and change the src of the img to unpaused version
     if ($(this).attr("state") == "still") {
         $(this).attr("state", "animated");
         $(this).children("img").attr("src", $(this).attr("playing"));
-    // if clicked div has state="animated", it is an animated gif so change state and change the src of the img to paused version
+    // if clicked div has state="animated" (the only other possibilty), it is an animated gif so change state to "still" and change the src of the img to paused version
     } else {
         $(this).attr("state", "still");
         $(this).children("img").attr("src", $(this).attr("paused"));
