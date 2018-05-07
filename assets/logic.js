@@ -34,7 +34,7 @@ var topics = [
     ];
 
 // create input form where user will type their topic and create a button for it
-$("#content").append('<br><br><form><input type="text" placeholder="Band/Musician..." name="input"><button type="submit" id="userInput"><i class="fa fa-search"></i>Create Button</button></form>');
+$("#content").append('<br><br><form><input type="text" placeholder="Band/Musician..." name="input"><button type="submit" id="userInput" style="border-radius:4px; background:white;"><i class="fa fa-search"></i>Create Button</button></form>');
 
 // create div for buttons and append buttons for array 'topics'
 $("#content").append("<div id='buttons'></div>");
@@ -42,7 +42,7 @@ $("#content").append("<div id='buttons'></div>");
 for (var i = 0; i < topics.length; i++) {
     var button = $("<button>");
     button.attr("data-name", topics[i]);
-    button.addClass("gifButton");
+    button.addClass("gifButton btn btn-dark");
     button.text(topics[i]);
     $("#buttons").append(button);
 }  
@@ -95,7 +95,7 @@ $("#content").on("click", "#userInput", function() {
             var input = $("input").val().trim();
             var newButton = $("<button>");
             newButton.attr("data-name", input);
-            newButton.addClass("gifButton");
+            newButton.addClass("gifButton btn btn-dark");
             newButton.text(input);
             $("#buttons").append(newButton);
 
